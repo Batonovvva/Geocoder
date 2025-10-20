@@ -79,7 +79,6 @@ class TestResponse(unittest.IsolatedAsyncioTestCase):
             await send_request("Екатеринбург")
 
         printed_output = [call[0][0] for call in mock_print.call_args_list]
-        # Cached branch prints only the full address
         self.assertTrue(any("Полный адрес: Екатеринбург, Россия" in str(msg) for msg in printed_output))
 
     @patch("Source.response.return_address_if_exist", new_callable=AsyncMock)
