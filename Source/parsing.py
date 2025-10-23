@@ -1,15 +1,19 @@
 import asyncio
+import os
 from typing import Optional, Dict
 
 from Source import response as req
 from Source.database.requests import add_new_address
 from Source.utils import build_address_from_components
+from dotenv import load_dotenv
+
+load_dotenv()
 
 try:
     from dadata import Dadata
 
-    token = "a2c67eb60ada13b05220830b7ea4611ae28e7ab9"
-    secret = "8236c69efae9d50b7c4b2c064ec863901424d4a5"
+    token = os.getenv("token")
+    secret = os.getenv("secret")
     dadata = Dadata(token, secret)
 except ModuleNotFoundError:
     class _StubDadata:
